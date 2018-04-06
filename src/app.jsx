@@ -7,7 +7,7 @@ class App extends Component {
 
   render() {
   <div>
-    <header>Change Calculator</header>
+    <h1>Change Calculator</h1>
     <div className='container'>
       <div className='row'>
       <div className='cos-sm'>
