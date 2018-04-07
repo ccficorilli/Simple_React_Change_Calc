@@ -1,0 +1,41 @@
+body {
+    box-sizing: border-box;
+    /* Source: https://uigradients.com */
+    background: #3a7bd5;
+    background: -webkit-linear-gradient(to right, #3a6073, #3a7bd5);
+    background: linear-gradient(to right, #3a6073, #3a7bd5);
+
+  }
+
+  #container {
+    margin: 20px 30px;
+  }
+
+  h1 {
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    border-bottom: 1px white solid;
+    width: auto;
+  }
+
+  #amounts {
+    background: lightgray;
+    width: 35%;
+    height: 300px;
+    padding: 5px;
+    border: 1px white solid;
+    border-radius: 3px;
+    margin: 10px 5px 10px 30px;
+
+  }
+
+  #change {
+    background: lightgray;
+    width: 55%;
+    height: 450px;
+    padding: 5px;
+    border: 1px white solid;
+    border-radius: 3px;
+    margin: 10px 30px 10px 5px;
+
+  }

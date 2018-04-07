@@ -6,38 +6,22 @@ class App extends Component {
   }
 
   render() {
-  <div>
-    <h1>Change Calculator</h1>
-    <div className='container'>
-      <div className='row'>
-      <div className='cos-sm'>
-      Enter Information
+    return(
+      <div>
+        <div className='container'>
+          <h2 className='border-bottom border-white #fff py-2 text-white'>Change Calculator</h2>
+          <div className='row p-3'>
+            <div className="col-sm-4 p-2"> 
+              <div className="border-white border rounded w-100">Amount Given Goes Here</div>            
+            </div>
+            <div className="col-sm-8 p-2">
+              <div className="border-white border rounded w-100">Change Goes Here</div>            
+            </div>
+          </div>        
+        </div>
       </div>
-      <div className='cos-sm'>
-      How Much is due?
-        <input type='number' value='' /> 
-      </div>   
-      <div className='cos-sm'>
-      How much was received?
-        <input type='number' value='' />
-      </div>
-      <div className='cos-sm'><button type='submit' onClick={this.calculate()}>Calulate</button></div>
-      </div>
-    </div>
-    <div>
-      <div>The total change due is $</div>
-      <div>Twenties</div>
-      <div>Tens</div>
-      <div>Fives</div>
-      <div>Ones</div>
-      <div>Quarters</div>
-      <div>Dimes</div>
-      <div>Nickels</div>
-      <div>Pennies</div>
-      
-    </div>
-  </div>
+    );
   }
+   
 }
-
 export default App;
