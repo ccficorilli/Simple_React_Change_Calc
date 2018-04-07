@@ -1,41 +1,32 @@
 body {
-    box-sizing: border-box;
-    /* Source: https://uigradients.com */
-    background: #3a7bd5;
-    background: -webkit-linear-gradient(to right, #3a6073, #3a7bd5);
-    background: linear-gradient(to right, #3a6073, #3a7bd5);
-
-  }
-
-  #container {
-    margin: 20px 30px;
-  }
-
-  h1 {
-    color: white;
-    font-family: Arial, Helvetica, sans-serif;
-    border-bottom: 1px white solid;
-    width: auto;
-  }
-
-  #amounts {
-    background: lightgray;
-    width: 35%;
-    height: 300px;
-    padding: 5px;
-    border: 1px white solid;
-    border-radius: 3px;
-    margin: 10px 5px 10px 30px;
-
-  }
-
-  #change {
-    background: lightgray;
-    width: 55%;
-    height: 450px;
-    padding: 5px;
-    border: 1px white solid;
-    border-radius: 3px;
-    margin: 10px 30px 10px 5px;
-
-  }
+  font-family: 'Roboto', Arial;
+  box-sizing: border-box;
+  /* Source: https://uigradients.com */
+  background: #3a7bd5;
+  background: -webkit-linear-gradient(to right, #3a6073, #3a7bd5);
+  background: linear-gradient(to right, #3a6073, #3a7bd5);
+}
+.bg-custom {
+  background: #f5f5dc;
+}
+.brd-btm-cst {
+  border-bottom: 1px solid #808080;
+}
+.txt-sm {
+  font-size: small;
+  font-weight: bold;
+}
+.brd-top-cst {
+  border-top: 1px solid #808080;
+  margin-left: auto;
+  margin-right: auto;
+  
+}
+button {
+  color: #ffffff;
+  background-color: #0065d8;
+  border: 1px transparent solid;
+  border-radius: 4px;
+  width: 100%;
+  margin-top: 13px;
+}
