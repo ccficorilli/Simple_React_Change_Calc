@@ -28,14 +28,67 @@ body {
 button {
   color: #ffffff;
   background-color: #0065d8;
-  border: 1px transparent solid;
-  border-radius: 4px;
+  border: 2px #d3d3d3 solid;
+  border-radius: 8px;
   width: 100%;
   margin-top: 13px;
   padding: 2px;
+  
+}
+button:focus {
+  outline: none;
+}
+button:active {
+  border: #808080 2px solid;
+  border-radius: 8px;
+  
 }
 input {
   border-radius: 4px;
   border: 1px solid #d1d1d1;
   background: #e6e6e6;
+}
+.changeDisplay {
+  text-align: center;
+  font-weight: 400;
+  border: solid #d3d3d3 1px;
+  border-radius: 4px;
+  width: 100%;
+  padding: 15px;
+  margin: 10px 20px;
+}
+.successful {
+  
+  color: #2c502c;
+  background-color: #97ca97;
+}
+.caution {
+  color: #502c2c;
+  background-color: #ca9797;
+}
+.dollarsRow,  
+.centsRow {
+  
+  padding: 15px;
+  width: 100%;
+  display: inline-flex;
+
+}
+.dollars, 
+.cents {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1.3vmax ;
+  color: #708090;
+  background: #c9c9c9;
+  width: 21%;
+  min-width: 80px;
+  height: 100px;
+  border: #708090 1px solid;
+  border-radius: 6px;
+  padding: 10px 15px 15px 15px;
+  text-align: center;
+  margin: 2%;
+}
+.col-sm-8{
+  min-width: 400px;
 }
