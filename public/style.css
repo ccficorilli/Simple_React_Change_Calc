@@ -5,6 +5,7 @@ body {
   background: #3a7bd5;
   background: -webkit-linear-gradient(to right, #3a6073, #3a7bd5);
   background: linear-gradient(to right, #3a6073, #3a7bd5);
+  display: flex;
 }
 /*.bg-custom {
   background: #dfdfdf;
@@ -72,23 +73,43 @@ input {
   padding: 15px;
   width: 100%;
   display: inline-flex;
+  
 
 }
 .dollars, 
 .cents {
+  
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.3vmax ;
+  font-size: 1.3vmax;
   color: #708090;
   background: #c9c9c9;
   width: 21%;
-  min-width: 80px;
   height: 100px;
   border: #708090 1px solid;
   border-radius: 6px;
-  padding: 10px 15px 15px 15px;
+  padding: 15px 15px 18px 15px;
   text-align: center;
   margin: 2%;
+  transition: ease 2000ms;
 }
-.col-sm-8{
-  min-width: 400px;
+.register {
+  border: transparent 1px solid;
+  background: #f8f9fa;
+  border-radius: 4px;
+  min-width: 412px;
+  /*overflow: auto;*/
+  
+}
+.dollars:focus, 
+.cents:focus {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  text-shadow: #3d503d 3px 5px 8px;
+  font-size: 3.5vmax;
+  color: #51b151;
+  background: transparent;
+  width: 21%;
+  height: 100px;
+  border: none;
+  outline: none;  
+  margin: 2%;
 }

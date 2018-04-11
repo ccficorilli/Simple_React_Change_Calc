@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class App extends Component {
   constructor(props) {
     super(props);    
-    const none = <div className='changeDisplay'>There is no change to give...</div>;
+    this.handleClick = this.handleClick.bind(this);
     this.state = {      
       amountDue: 0,
       amountReceived: 0,
@@ -16,7 +16,7 @@ class App extends Component {
       nickels: 0,
       pennies: 0,
       changeDue: 0,
-      changeBar: none
+      changeBar: ''
     };
   }
   updateAmountDue(e) {
@@ -29,7 +29,7 @@ class App extends Component {
       amountReceived: e.target.value
     });
   }
-  updateChangeDue() {
+  handleClick() {
     let tempReceived = this.state.amountReceived * 100;
     tempReceived = Math.round(tempReceived);
     let tempDue = this.state.amountDue * 100;
@@ -50,6 +50,7 @@ class App extends Component {
         const pennies = Math.round(((((((((viewBox % 20) % 10) % 5) % 1) * 100) % 25) % 10) % 5) / 1);
         const yes = <div className='changeDisplay successful'>Your change is: ${this.state.changeDue}</div>
         const no = <div className='changeDisplay caution'>${this.state.amountReceived} is not enough for this item.</div>;
+        const none = <div className='changeDisplay'>There is no change to give...</div>;
         if (tempReceived > tempDue) {
           this.setState({
             twenties,
@@ -60,10 +61,14 @@ class App extends Component {
             dimes,
             nickels,
             pennies,
-            changeBar: yes })
+            changeBar: yes });
         } else if (tempReceived < tempDue){
           this.setState({
-            changeBar: no })
+            changeBar: no });
+        } else if (tempReceived === tempDue){
+          this.setState({
+            changeBar: none
+          });
         }
       }
   );    
@@ -104,19 +109,19 @@ class App extends Component {
                   />
                 </div>
                 <div className='panel mt-1 mb-1 p-2 brd-top-cst'>
-                  <button type='submit' onClick={ () => this.updateChangeDue() }>Calculate</button>
+                  <button type='submit' onClick={this.handleClick}>Calculate</button>
                 </div>
               </div>
             </div>
             <div className='col-sm-8 p-2'>
-              <div className='border bg-light rounded w-100'>
+              <div className='register'>
                 <div className='row p-3'>{this.state.changeBar}</div>
                 <div className='dollarsRow'>
                   <div className='dollars'>Twenties
                     <p>{this.state.twenties}</p>
                   </div>
                   <div className='dollars'>Tens
-                    <p>{this.state.tens}</p>
+                    <p><span>{this.state.tens}</span></p>
                   </div>
                   <div className='dollars'>Fives
                     <p>{this.state.fives}</p>
