@@ -47,7 +47,7 @@ describe('express', function() {
   it('should include a button for the user to calculate change', () =>
     nightmare
     .goto(url)
-    .evaluate(() => document.querySelector('button.btn'))
+    .evaluate(() => document.querySelector('button'))
     .end()
     .then(button => {
       expect(button).to.not.be.null.and.to.not.be.undefined;
@@ -60,7 +60,7 @@ describe('express', function() {
     .goto(url)
     .type('input[name=amountDue]', 13.01)
     .type('input[name=amountReceived]', 20)
-    .click('button.btn')
+    .click('button')
     .wait('div.alert.alert-success')
     .evaluate(() => document.querySelector('div.alert.alert-success').innerText)
     .end()
@@ -72,7 +72,7 @@ describe('express', function() {
     .goto(url)
     .type('input[name=amountDue]', 13.01)
     .type('input[name=amountReceived]', 20)
-    .click('button.btn')
+    .click('button')
     .wait('div.alert.alert-success')
     .evaluate(() => Array.from(document.querySelectorAll('div.well > p.lead')).map(e => e.innerText))
     .then((results) => {

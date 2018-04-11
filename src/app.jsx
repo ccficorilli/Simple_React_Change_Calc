@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-
 class App extends Component {
   constructor(props) {
     super(props);    
@@ -8,7 +7,7 @@ class App extends Component {
     this.state = {      
       amountDue: 0,
       amountReceived: 0,
-      twenties: 10,
+      twenties: 0,
       tens: 0,
       fives: 0,
       ones: 0,
@@ -19,7 +18,6 @@ class App extends Component {
       changeDue: 0,
       changeBar: none
     };
-    this.updateChangeDue = this.updateChangeDue.bind(this)
   }
   updateAmountDue(e) {
     this.setState({
@@ -40,17 +38,34 @@ class App extends Component {
     this.setState({
       changeDue,      
     },
-    function() {
-      const yes = <div className='changeDisplay successful'>Your change is: ${this.state.changeDue}</div>
-      const no = <div className='changeDisplay caution'>${this.state.amountReceived} is not enough for this item.</div>;
-      if (tempReceived >= tempDue) {
-        this.setState({
-          changeBar: yes })
-      } else {
-        this.setState({
-          changeBar: no })
+      () => {
+        const viewBox = this.state.changeDue;
+        const twenties = Math.floor(viewBox / 20);
+        const tens = Math.floor((viewBox % 20) / 10);
+        const fives = Math.floor(((viewBox % 20) % 10) / 5);
+        const ones = Math.floor((((viewBox % 20) % 10) % 5) / 1);
+        const quarters = Math.floor((((((viewBox % 20) % 10) % 5) % 1) * 100) / 25);
+        const dimes = Math.floor(((((((viewBox % 20) % 10) % 5) % 1) * 100) % 25) / 10);
+        const nickels = Math.floor((((((((viewBox % 20) % 10) % 5) % 1) * 100) % 25) % 10) / 5);
+        const pennies = Math.round(((((((((viewBox % 20) % 10) % 5) % 1) * 100) % 25) % 10) % 5) / 1);
+        const yes = <div className='changeDisplay successful'>Your change is: ${this.state.changeDue}</div>
+        const no = <div className='changeDisplay caution'>${this.state.amountReceived} is not enough for this item.</div>;
+        if (tempReceived > tempDue) {
+          this.setState({
+            twenties,
+            tens,
+            fives,
+            ones,
+            quarters,
+            dimes,
+            nickels,
+            pennies,
+            changeBar: yes })
+        } else if (tempReceived < tempDue){
+          this.setState({
+            changeBar: no })
+        }
       }
-    }
   );    
   }
   render() {
@@ -65,6 +80,7 @@ class App extends Component {
                 <div className='txt-sm-b row m-1 pl-2 pr-2'>How much is due?</div>
                 <div className='row m-1 p-2'>
                   <input
+                    name='amountDue'
                     type='number' 
                     step='.01' 
                     min='0'
@@ -72,11 +88,12 @@ class App extends Component {
                     placeholder='$0' 
                     className='w-100' 
                     onChange={ e => this.updateAmountDue(e) }
-                    />
+                  />
                 </div>
                 <div className='txt-sm-b row m-1 pl-2 pr-2'>How much was received?</div>
                 <div className='row m-1 p-2 '>
                   <input
+                    name='amountReceived'
                     type='number'
                     min='0'
                     step='.01' 
@@ -84,7 +101,7 @@ class App extends Component {
                     placeholder='$0' 
                     className='w-100'
                     onChange={ e => this.updateAmountReceived(e) }
-                    />
+                  />
                 </div>
                 <div className='panel mt-1 mb-1 p-2 brd-top-cst'>
                   <button type='submit' onClick={ () => this.updateChangeDue() }>Calculate</button>
