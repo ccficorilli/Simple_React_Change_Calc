@@ -48,7 +48,7 @@ class App extends Component {
         const dimes = Math.floor(((((((viewBox % 20) % 10) % 5) % 1) * 100) % 25) / 10);
         const nickels = Math.floor((((((((viewBox % 20) % 10) % 5) % 1) * 100) % 25) % 10) / 5);
         const pennies = Math.round(((((((((viewBox % 20) % 10) % 5) % 1) * 100) % 25) % 10) % 5) / 1);
-        const yes = <div className='changeDisplay successful'>Your change is: ${this.state.changeDue}</div>
+        const yes = <div className='changeDisplay successful'>The total change due is ${this.state.changeDue}</div>
         const no = <div className='changeDisplay caution'>${this.state.amountReceived} is not enough for this item.</div>;
         const none = <div className='changeDisplay'>There is no change to give...</div>;
         if (tempReceived > tempDue) {
@@ -121,7 +121,7 @@ class App extends Component {
                     <p>{this.state.twenties}</p>
                   </div>
                   <div className='dollars'>Tens
-                    <p><span>{this.state.tens}</span></p>
+                    <p>{this.state.tens}</p>
                   </div>
                   <div className='dollars'>Fives
                     <p>{this.state.fives}</p>
