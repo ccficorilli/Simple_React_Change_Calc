@@ -15,7 +15,7 @@ app.listen(8888);
 const url = 'http://localhost:8888';
 
 describe('express', function() {
-  this.timeout(6500);
+  this.timeout(16500);
   beforeEach(() => {
     nightmare = new Nightmare();
   });
@@ -61,8 +61,8 @@ describe('express', function() {
     .type('input[name=amountDue]', 13.01)
     .type('input[name=amountReceived]', 20)
     .click('button')
-    .wait('div.alert.alert-success')
-    .evaluate(() => document.querySelector('div.alert.alert-success').innerText)
+    .wait('div.successful')
+    .evaluate(() => document.querySelector('div.successful').innerText)
     .end()
     .then(el => expect(el).to.equal('The total change due is $6.99'))
   );
@@ -73,8 +73,8 @@ describe('express', function() {
     .type('input[name=amountDue]', 13.01)
     .type('input[name=amountReceived]', 20)
     .click('button')
-    .wait('div.alert.alert-success')
-    .evaluate(() => Array.from(document.querySelectorAll('div.well > p.lead')).map(e => e.innerText))
+    .wait('div.successful')
+    .evaluate(() => Array.from(document.querySelectorAll('div.dollars > p')).map(e => e.innerText))
     .then((results) => {
       const expected = {
         twenties: '0',

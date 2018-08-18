@@ -114,7 +114,7 @@ class App extends Component {
                     <p>{this.state.twenties}</p>
                   </div>
                   <div className='dollars'>Tens
-                    <p><span>{this.state.tens}</span></p>
+                    <p>{this.state.tens}</p>
                   </div>
                   <div className='dollars'>Fives
                     <p>{this.state.fives}</p>
