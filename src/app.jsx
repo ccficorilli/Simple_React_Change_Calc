@@ -1,24 +1,26 @@
 import React, { Component } from 'react';
+const defaultState = {
+  amountDue: 0,
+  amountReceived: 0,
+  twenties: 0,
+  tens: 0,
+  fives: 0,
+  ones: 0,
+  quarters: 0,
+  dimes: 0,
+  nickels: 0,
+  pennies: 0,
+  changeDue: 0,
+  changeBar: ''
+};
 
 class App extends Component {
   constructor(props) {
     super(props);    
+    this.state = defaultState;
     this.handleClick = this.handleClick.bind(this);
-    this.state = {      
-      amountDue: 0,
-      amountReceived: 0,
-      twenties: 0,
-      tens: 0,
-      fives: 0,
-      ones: 0,
-      quarters: 0,
-      dimes: 0,
-      nickels: 0,
-      pennies: 0,
-      changeDue: 0,
-      changeBar: ''
-    };
   }
+  
   updateAmountDue(e) {
     this.setState({
       amountDue: e.target.value
@@ -30,49 +32,40 @@ class App extends Component {
     });
   }
   handleClick() {
-    let tempReceived = this.state.amountReceived * 100;
-    tempReceived = Math.round(tempReceived);
-    let tempDue = this.state.amountDue * 100;
-    tempDue = Math.round(tempDue);
-    const changeDue = (tempReceived - tempDue) / 100;    
-    this.setState({
-      changeDue,      
-    },
-      () => {
-        const viewBox = this.state.changeDue;
-        const twenties = Math.floor(viewBox / 20);
-        const tens = Math.floor((viewBox % 20) / 10);
-        const fives = Math.floor(((viewBox % 20) % 10) / 5);
-        const ones = Math.floor((((viewBox % 20) % 10) % 5) / 1);
-        const quarters = Math.floor((((((viewBox % 20) % 10) % 5) % 1) * 100) / 25);
-        const dimes = Math.floor(((((((viewBox % 20) % 10) % 5) % 1) * 100) % 25) / 10);
-        const nickels = Math.floor((((((((viewBox % 20) % 10) % 5) % 1) * 100) % 25) % 10) / 5);
-        const pennies = Math.round(((((((((viewBox % 20) % 10) % 5) % 1) * 100) % 25) % 10) % 5) / 1);
-        const yes = <div className='changeDisplay successful'>Your change is: ${this.state.changeDue}</div>
-        const no = <div className='changeDisplay caution'>${this.state.amountReceived} is not enough for this item.</div>;
-        const none = <div className='changeDisplay'>There is no change to give...</div>;
-        if (tempReceived > tempDue) {
-          this.setState({
-            twenties,
-            tens,
-            fives,
-            ones,
-            quarters,
-            dimes,
-            nickels,
-            pennies,
-            changeBar: yes });
-        } else if (tempReceived < tempDue){
-          this.setState({
-            changeBar: no });
-        } else if (tempReceived === tempDue){
-          this.setState({
-            changeBar: none
-          });
-        }
-      }
-  );    
-  }
+    const tempReceived = Math.round(this.state.amountReceived * 100);
+    const tempDue = Math.round(this.state.amountDue * 100);
+    if (tempReceived < tempDue){
+      const no = <div className='changeDisplay caution'>${this.state.amountReceived} is not enough for this item.</div>;
+      this.setState(
+        defaultState,
+        defaultState.changeBar = no 
+      );
+    } else if (tempReceived === tempDue){
+      const none = <div className='changeDisplay'>You were given exact change...</div>;
+      this.setState(
+        defaultState,
+        defaultState.changeBar = none
+     );
+    } else {
+        const changeDue = (tempReceived - tempDue) / 100;
+        const yes = <div className='changeDisplay successful'>Your change is: ${changeDue}</div>    
+        this.setState({
+          changeDue,
+          amountDue: 0,
+          amountReceived: 0,
+          twenties: Math.floor(changeDue / 20),
+          tens: Math.floor((changeDue % 20) / 10),
+          fives: Math.floor(((changeDue % 20) % 10) / 5),
+          ones: Math.floor((((changeDue % 20) % 10) % 5) / 1),
+          quarters: Math.floor((((((changeDue % 20) % 10) % 5) % 1) * 100) / 25),
+          dimes: Math.floor(((((((changeDue % 20) % 10) % 5) % 1) * 100) % 25) / 10),
+          nickels: Math.floor((((((((changeDue % 20) % 10) % 5) % 1) * 100) % 25) % 10) / 5),
+          pennies: Math.round(((((((((changeDue % 20) % 10) % 5) % 1) * 100) % 25) % 10) % 5) / 1),
+          changeBar: yes 
+        });
+      }    
+    };
+    
   render() {
     return (
       <div>
